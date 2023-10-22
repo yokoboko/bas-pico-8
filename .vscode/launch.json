@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run",
+            "command": "/Applications/pico-8/PICO-8.app/Contents/MacOS/pico8 -run bas.p8",
+            "request": "launch",
+            "type": "node-terminal"
+        }
+    ]
+}
+
