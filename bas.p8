@@ -5,6 +5,15 @@ __lua__
 -- by yokoboko
 
 #include src/main.lua
+#include src/util/log.lua
+#include src/util/extend.lua
+#include src/scene/game_scene.lua
+#include src/scene/background.lua
+#include src/scene/columns.lua
+#include src/object/animatable.lua
+#include src/object/saw.lua
+#include src/object/player.lua
+
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000008200000000000000000000000000000000000000000
