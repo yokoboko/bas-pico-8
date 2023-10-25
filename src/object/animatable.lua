@@ -6,7 +6,7 @@ function animatable:new(o)
 
 	--init
 	--o.current [current animation name]
-    o.animations={}
+	o.animations={}
 	o.frame=1
 	o.count=1
 	o.sprite=0 --[sprite index]
