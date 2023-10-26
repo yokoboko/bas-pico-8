@@ -1,15 +1,23 @@
 saw={}
 extend(saw,animatable)
+extend(saw,collidable)
 
 function saw:new(o)
+    o=setmetatable(o,self)
     o=animatable.new(self,o)
-    local o=setmetatable(o or {},self)
+	o=collidable.new(self,o)
     self.__index=self
 
-    --init
+    --init {idx=0,tile_width=1,tile_height=1}
     o.left=rnd(1)<0.5
-    o:add_animation("spin",3,{68,71})
+
+    --collidable
+    local x=(o.left) and o.tile_width-8 or 128-o.tile_width-16
+	o.pos={x=x,y=o.idx*o.tile_height}
+	o.hitbox={x=3,y=3,w=16,h=16}
     
+    -- animatable
+    o:add_animation("spin",3,{68,71})
     return o
 end
 
@@ -17,13 +25,7 @@ function saw:update()
     self:update_animation()
 end
 
-function saw:draw(idx,tile_width,tile_height)
-    local pos_y=idx*tile_height
-    clip(tile_width,0,128-tile_width-16,128)
-    if self.left == true then
-        spr(self.sprite,tile_width-8,pos_y,3,3)
-    else 
-        spr(self.sprite,128-tile_width-16,pos_y,3,3,true)
-    end
-    clip()
+function saw:draw()
+    spr(self.sprite,self.pos.x,self.pos.y,3,3,not self.left)
+    self:draw_collision_box()
 end

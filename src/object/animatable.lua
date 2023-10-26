@@ -3,14 +3,13 @@ animatable={}
 function animatable:new(o)
 	o=setmetatable(o or {},self)
 	self.__index=self
-
+	
 	--init
 	--o.current [current animation name]
 	o.animations={}
 	o.frame=1
 	o.count=1
 	o.sprite=0 --[sprite index]
-	
 	return o
 end
 
