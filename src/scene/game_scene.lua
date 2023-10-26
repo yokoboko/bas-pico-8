@@ -9,20 +9,23 @@ function game_scene:new(o)
     o.tile_height = 24
 
     --camera [offset by screen height and 7 pixels to align bottom tile]
-    o.cam_y=32767-128-7 
+    o.cam_y=32767-128-7
 
     --layers
     o.background = background:new()
     o.columns = columns:new()
     o.player = player:new()
-
     return o
 end
 
 function game_scene:update()
     self.cam_y+=-0.5
-    self.columns:update(self.tile_width,self.tile_height,self.cam_y)
     self.player:update()
+    self.columns:update(self.tile_width,self.tile_height,self.cam_y)
+    local is_colliding=self.columns:collide(self.player)
+    if is_colliding then
+        log("colliding")
+    end
 end
 
 function game_scene:draw()
