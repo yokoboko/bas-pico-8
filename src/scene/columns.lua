@@ -6,7 +6,6 @@ function columns:new(o)
 
 	--init
  	o.tiles={}
-
  	return o
 end
 

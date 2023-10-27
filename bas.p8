@@ -10,6 +10,7 @@ __lua__
 #include src/scene/game_scene.lua
 #include src/scene/background.lua
 #include src/scene/columns.lua
+#include src/scene/game_camera.lua
 #include src/object/animatable.lua
 #include src/object/collidable.lua
 #include src/object/saw.lua
