@@ -16,7 +16,7 @@ function player:new(o)
 	--collidable
 	o.pos={x=o.left_x,y=32767-128+54}
 	o.hitbox={x=3,y=1,w=8,h=11}
-	
+	o.tempy=o.pos.y--for testing: delete
 	--animatable
 	o:add_animation("idle",20,{0,2})
 	o:add_animation("scared",1,{4})
@@ -26,6 +26,7 @@ end
 
 function player:update()
 	self:update_animation()
+	self.pos.y=self.tempy+(cos(t()*0.75)*30)--for testing: delete
 end
 
 function player:draw()
