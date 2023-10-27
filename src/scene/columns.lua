@@ -1,12 +1,12 @@
 columns={}
 
 function columns:new(o)
- 	o=setmetatable(o or {},self)
- 	self.__index=self
+	o=setmetatable(o or {},self)
+	self.__index=self
 
 	--init
- 	o.tiles={}
- 	return o
+	o.tiles={}
+	return o
 end
 
 function columns:update(tile_width,tile_height,cam_y)

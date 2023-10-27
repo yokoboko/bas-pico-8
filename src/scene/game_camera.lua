@@ -1,10 +1,10 @@
 game_camera={}
 
 function game_camera:new(o)
-	o=setmetatable(o or {},self)
-	self.__index=self
+    o=setmetatable(o or {},self)
+    self.__index=self
     
-	--init
+    --init
     o.offset=-72 --player y offset
     o.tracking=20 --slowdown player tracking
     o.track_faster=64 --track faster if player is less than this treshold

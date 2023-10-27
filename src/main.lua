@@ -1,4 +1,4 @@
-function _init() 
+function _init()
     current_scene=game_scene:new()
 end
 
