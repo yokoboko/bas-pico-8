@@ -1,13 +1,13 @@
 collidable={}
 
 function collidable:new(o)
-	o=setmetatable(o or {},self)
-	self.__index=self
+    o=setmetatable(o or {},self)
+    self.__index=self
     
-	--init
-	o.pos = o.pos or {x=0,y=0}
+    --init
+    o.pos = o.pos or {x=0,y=0}
     o.hitbox = o.hitbox or {x=0,y=0,w=1,h=1}
-	return o
+    return o
 end
 
 function collidable:collide(other)

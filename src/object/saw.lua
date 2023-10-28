@@ -5,7 +5,7 @@ extend(saw,collidable)
 function saw:new(o)
     o=setmetatable(o,self)
     o=animatable.new(self,o)
-	o=collidable.new(self,o)
+    o=collidable.new(self,o)
     self.__index=self
 
     --init {idx=0,tile_width=1,tile_height=1}
@@ -27,5 +27,4 @@ end
 
 function saw:draw()
     spr(self.sprite,self.pos.x,self.pos.y,3,3,not self.left)
-    self:draw_collision_box()
 end
