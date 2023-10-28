@@ -51,3 +51,8 @@ function columns:collide(player)
 	end
 	return false
 end
+
+function columns:will_collide(player)
+	local target_tile=player.tile_pos-1
+	return self.tiles["t"..target_tile].saw!=nil and self.tiles["t"..target_tile].saw.left!=player.right_wall
+end

@@ -8,6 +8,13 @@ function game_scene:new(o)
     o.tile_width = 16
     o.tile_height = 24
 
+    --state
+    o.state_initial="initial"
+    o.state_playing="playing"
+    o.state_will_die="will_die"
+    o.state_dead="dead"
+    o.state=o.state_initial
+
     --layers
     o.background = background:new()
     o.columns = columns:new()
@@ -17,23 +24,22 @@ function game_scene:new(o)
 end
 
 function game_scene:update()
-    --buttons
-    local pressed_right=nil
-    if btnp(0) or btnp(4) then
-        pressed_right=false
-    elseif btnp(1) or btnp(5) then
-        pressed_right=true
-    end
+    --get button action
+    local action_right=self:button_action_right()
 
     --update layers
-    self.player:update(pressed_right)
+    if (self.state!=self.state_dead) self.player:update(action_right,self.state==self.state_will_die)
     self.camera:update(self.player.pos.y)
     self.columns:update(self.tile_width,self.tile_height,self.camera.y)
 
-    --collision detection
-    local is_colliding=self.columns:collide(self.player)
-    if is_colliding then
-        -- log("colliding")
+    --update state
+    if action_right!=nil and self.columns:will_collide(self.player) then
+        self.state=self.state_will_die
+    end
+    if self.state==self.state_initial and action_right!=nil then
+        self.state=self.state_playing
+    elseif self.state==self.state_will_die and self.columns:collide(self.player) then
+        self.state=self.state_dead
     end
 end
 
@@ -42,5 +48,18 @@ function game_scene:draw()
     self.camera:draw()
     self.background:draw()
     self.columns:draw(self.tile_width,self.tile_height)
-    self.player:draw()
+    if (self.state!=self.state_dead) self.player:draw()
+end
+
+function game_scene:button_action_right()
+    --`true` if right button is pressed
+    --`false` if left button is pressed
+    --`nil` if no button is presed
+    if (self.state==self.state_will_die) return nil
+    if btnp(0) or btnp(4) then
+        return false
+    elseif btnp(1) or btnp(5) then
+        return true
+    end
+    return nil
 end

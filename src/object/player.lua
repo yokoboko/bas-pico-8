@@ -17,6 +17,7 @@ function player:new(o)
 	o.tile_pos=1362
 	o.jumping=false
 	o.jump_speed=0.05 -- in tiles
+	o.jump_speed_will_die=0.0042 -- in tiles
 	o.jump_tile_pos=0 --in tiles
 	o.jump_changes_direction=false
 	o.jump_amp=8 --amplitude
@@ -32,20 +33,24 @@ function player:new(o)
 	return o
 end
 
-function player:update(pressed_right)
+function player:update(action_right,will_die)
 	--jump
-	if pressed_right!=nil then
+	if action_right!=nil then
 		if self.jumping then
 			self.tile_pos-=1
 		else
 			self.jumping=true
 		end
 		self.jump_tile_pos=0
-		self.jump_changes_direction=self.right_wall!=pressed_right
-		self.right_wall=pressed_right
+		self.jump_changes_direction=self.right_wall!=action_right
+		self.right_wall=action_right
 	end
 	if self.jumping then
-		self.jump_tile_pos=max(self.jump_tile_pos-self.jump_speed,-1)
+		local treshold=self.jump_changes_direction and -0.6 or -0.2
+		local speed = ternary(will_die and self.jump_tile_pos<treshold,
+								self.jump_speed_will_die,
+								self.jump_speed)
+		self.jump_tile_pos=max(self.jump_tile_pos-speed,-1)
 		if self.jump_tile_pos==-1 then
 			self.jumping=false
 			self.tile_pos-=1
