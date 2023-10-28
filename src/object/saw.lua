@@ -27,5 +27,4 @@ end
 
 function saw:draw()
     spr(self.sprite,self.pos.x,self.pos.y,3,3,not self.left)
-    self:draw_collision_box()
 end

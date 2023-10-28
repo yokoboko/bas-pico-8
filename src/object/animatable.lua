@@ -22,10 +22,12 @@ function animatable:add_animation(name,duration,list)
 end
 
 function animatable:play_animation(name)
-	self.current = name
-	self.count=1
-	self.frame=1
-	self.sprite = self.animations[self.current].list[self.frame]
+	if self.current != name then
+		self.current = name
+		self.count=1
+		self.frame=1
+		self.sprite = self.animations[self.current].list[self.frame]
+	end
 end
 
 function animatable:update_animation()
