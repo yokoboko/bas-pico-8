@@ -47,7 +47,7 @@ end
 function game_scene:draw()
     cls()
     --fade out game scene if the player is dead
-    if (self.state==self.state_dead) pal({0,1,3,2,5,13,6,8,4,10,11,12,5,14,9,0}, 0)
+    if (self.state==self.state_dead) pal({0,1,3,2,5,13,6,8,4,10,11,12,1,14,9,0}, 0)
     self.camera:draw()
     self.background:draw()
     self.columns:draw(self.tile_width,self.tile_height)
