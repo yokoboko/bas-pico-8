@@ -31,6 +31,7 @@ function game_scene:update()
     if (self.state!=self.state_dead) self.player:update(action_right,self.state==self.state_will_die)
     self.camera:update(self.player.pos.y)
     self.columns:update(self.tile_width,self.tile_height,self.camera.y)
+    self.background:update(self.camera.y)
 
     --update state
     if action_right!=nil and self.columns:will_collide(self.player) then
@@ -45,10 +46,14 @@ end
 
 function game_scene:draw()
     cls()
+    --fade out game scene if the player is dead
+    if (self.state==self.state_dead) pal({0,1,3,2,5,13,6,8,4,10,11,12,5,14,9,0}, 0)
     self.camera:draw()
     self.background:draw()
     self.columns:draw(self.tile_width,self.tile_height)
     if (self.state!=self.state_dead) self.player:draw()
+    pal()
+    --todo: draw end screen
 end
 
 function game_scene:button_action_right()
