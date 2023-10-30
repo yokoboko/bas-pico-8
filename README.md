@@ -2,7 +2,6 @@
 
 <img src='readme-resources/console_game_composition.gif' width='372'>
 
-
 I hope you will enjoy this PICO-8 retro game demake! Feel free to contribute, share your thoughts, and embrace the spirit of creativity that PICO-8 embodies.
 
 ## Cartridge
@@ -16,7 +15,7 @@ To run this game, you'll need to download the [cartridge](readme-resources/bas.p
 Once you have PICO-8 installed, load the game by executing the following command in your PICO-8 command prompt:
 
 ```shell
-load base.p8.png
+load bas.p8.png
 ```
 
 ## About PICO-8
