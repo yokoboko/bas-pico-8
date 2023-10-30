@@ -30,7 +30,7 @@ function game_scene:update()
     --update layers
     if (self.state!=self.state_dead) self.player:update(action_right,self.state==self.state_will_die)
     self.camera:update(self.player.pos.y)
-    self.columns:update(self.tile_width,self.tile_height,self.camera.y)
+    self.columns:update(self.tile_width,self.tile_height,self.camera.y,self.player,action_right)
     self.background:update(self.camera.y)
 
     --update state

@@ -40,5 +40,9 @@ function animatable:update_animation()
 			if (self.frame>count(animation.list)) self.frame=1
 		end
 		self.sprite = self.animations[self.current].list[self.frame]
+		if (self.sprite==-1) then
+			self.current=nil
+			self.sprite=nil
+		end
 	end
 end

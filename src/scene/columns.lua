@@ -9,7 +9,7 @@ function columns:new(o)
 	return o
 end
 
-function columns:update(tile_width,tile_height,cam_y)
+function columns:update(tile_width,tile_height,cam_y,player,action_right)
 	--visible
 	local min_tile = flr(cam_y/tile_height)
 	local max_tile = ceil((cam_y+128)/tile_height)
@@ -21,7 +21,7 @@ function columns:update(tile_width,tile_height,cam_y)
 		end
 	end
 	
-	--create&update
+	--create, add jump effect and update
 	for i=min_tile,max_tile do 
 		if self.tiles["t"..i]==nil then 
 			--create [don't add saws to the first few tiles (first from bottom up is 1365)]
@@ -31,12 +31,21 @@ function columns:update(tile_width,tile_height,cam_y)
 			--update saw
 			self.tiles["t"..i].saw:update()
 		end
+		if self.tiles["t"..i].jfx!=nil then
+			--update jump effect
+			self.tiles["t"..i].jfx:update()
+		elseif action_right!=nil and player.tile_pos==i then
+			--add jump effect
+			self.tiles["t"..i].jfx=jump_effect:new({right_wall=player.pos.x>63,y=i*tile_height})
+		end
 	end
+
 end
 
 function columns:draw(tile_width,tile_height)
 	for k,v in pairs(self.tiles) do
 		if (v.saw != nil) v.saw:draw()
+		if (v.jfx != nil) v.jfx:draw()
 		local left_sprite=(v.saw != nil and v.saw.left) and 66 or 64 
 		local right_sprite=(v.saw != nil and v.saw.left == false) and 66 or 64
 		local y = v.idx*tile_height
