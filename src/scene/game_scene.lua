@@ -16,10 +16,11 @@ function game_scene:new(o)
     o.state=o.state_initial
 
     --layers
-    o.background = background:new()
-    o.columns = columns:new()
-    o.player = player:new({tile_height=o.tile_height})
-    o.camera = game_camera:new({y=o.player.pos.y})
+    o.background=background:new()
+    o.columns=columns:new()
+    o.trap=trap:new()
+    o.player=player:new({tile_height=o.tile_height})
+    o.camera=game_camera:new({y=o.player.pos.y})
     return o
 end
 
@@ -28,7 +29,8 @@ function game_scene:update()
     local action_right=self:button_action_right()
 
     --update layers
-    if (self.state!=self.state_dead) self.player:update(action_right,self.state==self.state_will_die)
+    if (self.state!=self.state_dead) self.player:update(action_right,self.trap.pos.y,self.state==self.state_will_die)
+    if (self.state!=self.state_initial) self.trap:update(self.camera.y,self.state==self.state_will_die,self.state==self.state_dead)
     self.camera:update(self.player.pos.y)
     self.columns:update(self.tile_width,self.tile_height,self.camera.y,self.player,action_right)
     self.background:update(self.camera.y)
@@ -39,7 +41,7 @@ function game_scene:update()
     end
     if self.state==self.state_initial and action_right!=nil then
         self.state=self.state_playing
-    elseif self.state==self.state_will_die and self.columns:collide(self.player) then
+    elseif self.columns:collide(self.player) or self.trap:collide(self.player) then
         self.state=self.state_dead
     end
 end
@@ -51,6 +53,7 @@ function game_scene:draw()
     self.camera:draw()
     self.background:draw()
     self.columns:draw(self.tile_width,self.tile_height)
+    self.trap:draw()
     if (self.state!=self.state_dead) self.player:draw()
     pal()
     --todo: draw end screen

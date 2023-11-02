@@ -16,7 +16,7 @@ function saw:new(o)
 	o.pos={x=x,y=o.idx*o.tile_height}
 	o.hitbox={x=3,y=3,w=16,h=16}
     
-    -- animatable
+    --animatable
     o:add_animation("spin",3,{68,71})
     return o
 end

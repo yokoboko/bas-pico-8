@@ -33,7 +33,7 @@ function player:new(o)
 	return o
 end
 
-function player:update(action_right,will_die)
+function player:update(action_right,trap_y,will_die)
 	--jump
 	if action_right!=nil then
 		if self.jumping then
@@ -75,7 +75,9 @@ function player:update(action_right,will_die)
 	--animation
 	if self.jumping then
 		self:play_animation("flying")
-	else 
+	elseif trap_y-self.pos.y<28 then
+		self:play_animation("scared")
+	else
 		self:play_animation("idle")
 	end
 	self:update_animation()
