@@ -20,6 +20,7 @@ function game_scene:new(o)
     o.columns=columns:new()
     o.trap=trap:new()
     o.player=player:new({tile_height=o.tile_height})
+    o.score=score:new()
     o.camera=game_camera:new({y=o.player.pos.y})
     return o
 end
@@ -44,6 +45,9 @@ function game_scene:update()
     elseif self.columns:collide(self.player) or self.trap:collide(self.player) then
         self.state=self.state_dead
     end
+
+    --update score
+    if (self.state!=self.state_initial) self.score:update(self.camera.y,(action_right!=nil))
 end
 
 function game_scene:draw()
@@ -54,6 +58,7 @@ function game_scene:draw()
     self.background:draw()
     self.columns:draw(self.tile_width,self.tile_height)
     self.trap:draw()
+    if (self.state!=self.state_initial) self.score:draw()
     if (self.state!=self.state_dead) self.player:draw()
     pal()
     --todo: draw end screen
