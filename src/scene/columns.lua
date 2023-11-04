@@ -9,7 +9,7 @@ function columns:new(o)
 	return o
 end
 
-function columns:update(tile_width,tile_height,cam_y,player,action_right)
+function columns:update(tile_width,tile_height,cam_y,player,action_right,is_dead)
 	--visible
 	local min_tile = flr(cam_y/tile_height)
 	local max_tile = ceil((cam_y+128)/tile_height)
@@ -31,15 +31,16 @@ function columns:update(tile_width,tile_height,cam_y,player,action_right)
 			--update saw
 			self.tiles["t"..i].saw:update()
 		end
-		if self.tiles["t"..i].jfx!=nil then
-			--update jump effect
-			self.tiles["t"..i].jfx:update()
-		elseif action_right!=nil and player.tile_pos==i then
-			--add jump effect
-			self.tiles["t"..i].jfx=jump_effect:new({right_wall=player.pos.x>63,y=i*tile_height})
+		if not is_dead then
+			if self.tiles["t"..i].jfx!=nil then
+				--update jump effect
+				self.tiles["t"..i].jfx:update()
+			elseif action_right!=nil and player.tile_pos==i then
+				--add jump effect
+				self.tiles["t"..i].jfx=jump_effect:new({right_wall=player.pos.x>63,y=i*tile_height})
+			end
 		end
 	end
-
 end
 
 function columns:draw(tile_width,tile_height)

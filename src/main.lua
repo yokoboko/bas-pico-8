@@ -1,6 +1,9 @@
 --disable btnp repeat
 poke(0X5F5C, 255)
 
+--game data
+cartdata("bas_data_1")
+
 function _init()
     current_scene=game_scene:new()
 end

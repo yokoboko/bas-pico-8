@@ -9,7 +9,7 @@ function player:new(o)
 	self.__index=self
 
 	--init
-	o.right_wall=false
+	o.right_wall=rnd(1)<0.5
 	o.left_x=12
 	o.right_x=100
 	o.tile_height=o.tile_height or 8
@@ -46,7 +46,7 @@ function player:update(action_right,trap_y,will_die)
 		self.right_wall=action_right
 	end
 	if self.jumping then
-		local treshold=self.jump_changes_direction and -0.6 or -0.2
+		local treshold=self.jump_changes_direction and -0.7 or -0.25
 		local speed = ternary(will_die and self.jump_tile_pos<treshold,
 								self.jump_speed_will_die,
 								self.jump_speed)
