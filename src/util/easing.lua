@@ -7,3 +7,8 @@ function easing_cubic_out(t,b,c,d)
     t-=1
     return c*(t*t*t + 1) + b
 end 
+
+function easing_cubic_in(t,b,c,d)
+    t /= d
+    return c*t*t*t + b
+end

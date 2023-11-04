@@ -26,5 +26,7 @@ function saw:update()
 end
 
 function saw:draw()
+    palt(11,true)
     spr(self.sprite,self.pos.x,self.pos.y,3,3,not self.left)
+    palt()
 end

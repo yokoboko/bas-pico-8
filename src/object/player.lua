@@ -9,7 +9,7 @@ function player:new(o)
 	self.__index=self
 
 	--init
-	o.right_wall=false
+	o.right_wall=rnd(1)<0.5
 	o.left_x=12
 	o.right_x=100
 	o.tile_height=o.tile_height or 8
@@ -29,6 +29,7 @@ function player:new(o)
 	--animatable
 	o:add_animation("idle",20,{0,2})
 	o:add_animation("scared",1,{4})
+	o:add_animation("will_die",3,{10,12,14})
 	o:add_animation("flying",2,{6,8})
 	return o
 end
@@ -46,7 +47,7 @@ function player:update(action_right,trap_y,will_die)
 		self.right_wall=action_right
 	end
 	if self.jumping then
-		local treshold=self.jump_changes_direction and -0.6 or -0.2
+		local treshold=self.jump_changes_direction and -0.7 or -0.275
 		local speed = ternary(will_die and self.jump_tile_pos<treshold,
 								self.jump_speed_will_die,
 								self.jump_speed)
@@ -73,7 +74,9 @@ function player:update(action_right,trap_y,will_die)
 	end
 
 	--animation
-	if self.jumping then
+	if will_die then
+		self:play_animation("will_die")
+	elseif self.jumping then
 		self:play_animation("flying")
 	elseif trap_y-self.pos.y<28 then
 		self:play_animation("scared")

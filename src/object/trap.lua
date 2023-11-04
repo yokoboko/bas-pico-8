@@ -27,13 +27,11 @@ function trap:new(o)
     return o
 end
 
-function trap:update(camera_y,will_die,is_dead)
+function trap:update(camera_y,is_dead)
     self:update_animation()
-    if not is_dead then
-        self.speed=min(self.speed+self.speed_boost,self.speed_max)
-        local shift=self.base_speed*self.speed*self.speed_multiply
-        self.pos.y=max(min(self.pos.y-ternary(will_die,shift/5,shift), camera_y+self.offset),camera_y+72)
-    end
+    self.speed=min(self.speed+self.speed_boost,self.speed_max)
+    local shift=self.base_speed*self.speed*self.speed_multiply
+    self.pos.y=max(min(self.pos.y-shift, camera_y+self.offset),camera_y+72)
 end
 
 function trap:draw()
