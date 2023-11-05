@@ -11,7 +11,7 @@ function trap:new(o)
     o.base_speed=0.042
     o.speed=0.9
     o.speed_boost=0.0042
-    o.speed_max=2.25
+    o.speed_max=2.42
     o.speed_multiply=15
     
     o.offset=128--116

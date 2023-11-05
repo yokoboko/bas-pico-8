@@ -12,3 +12,10 @@ function easing_cubic_in(t,b,c,d)
     t /= d
     return c*t*t*t + b
 end
+
+function easing_cubic_in_out(t,b,c,d)
+    t /= d/2
+    if (t < 1) return c/2*t*t*t + b
+    t-=2
+    return c/2*(t*t*t + 2) + b
+end

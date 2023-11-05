@@ -23,6 +23,7 @@ function game_scene:new(o)
     o.trap=trap:new()
     o.player=player:new({tile_height=o.tile_height})
     o.score=score:new()
+    o.game_initial=game_initial:new()
     o.game_over=game_over:new()
     o.transition=transition:new()
     o.camera=game_camera:new({y=o.player.pos.y})
@@ -57,6 +58,7 @@ function game_scene:update()
     end
     if self.state==self.state_initial and action_right!=nil then
         self.state=self.state_playing
+        self.game_initial:hide()
     elseif self.state!=self.state_dead and (self.columns:collide(self.player) or self.trap:collide(self.player)) then
         self.buttons_cooldown=22
         self.state=self.state_dead
@@ -64,6 +66,10 @@ function game_scene:update()
 
     --update score
     if (self.state!=self.state_initial and self.state!=self.state_dead) self.score:update(self.camera.y,(action_right!=nil))
+
+    --game initial
+    if (self.game_initial!=nil and self.game_initial.anim_finished) self.game_initial=nil 
+    if (self.game_initial!=nil) self.game_initial:update(self.camera.y)
 
     --game over
     if (self.state==self.state_dead) self.game_over:update(self.camera.y,self.player.pos,self.score.score)
@@ -82,6 +88,7 @@ function game_scene:draw()
     self.columns:draw(self.tile_width,self.tile_height)
     self.trap:draw()
     if (self.state!=self.state_initial and self.state!=self.state_dead) self.score:draw()
+    if (self.game_initial!=nil) self.game_initial:draw()
     if (self.state!=self.state_dead and self.transition.anim_t>0) self.player:draw()
     pal()
 
@@ -91,8 +98,7 @@ function game_scene:draw()
     --transition
     self.transition:draw()
 
-    --draw stats
-    -- draw_stats(self.camera.y)
+    -- draw_stats(self.camera.y) --draw stats
 end
 
 function game_scene:button_action_right()
