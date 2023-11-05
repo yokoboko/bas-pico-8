@@ -25,7 +25,7 @@ function columns:update(tile_width,tile_height,cam_y,player,action_right,is_dead
 	for i=min_tile,max_tile do 
 		if self.tiles["t"..i]==nil then 
 			--create [don't add saws to the first few tiles (first from bottom up is 1365)]
-			local tile_saw=(i<1361) and saw:new({idx=i,tile_width=tile_width,tile_height=tile_height}) or nil
+			local tile_saw=(i<1359) and saw:new({idx=i,tile_width=tile_width,tile_height=tile_height}) or nil
 			self.tiles["t"..i]={idx=i,saw=tile_saw}
 		elseif self.tiles["t"..i].saw!=nil then
 			--update saw
