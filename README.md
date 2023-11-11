@@ -6,11 +6,11 @@ I hope you will enjoy this PICO-8 retro game demake! Feel free to contribute, sh
 
 ## Cartridge
 
-![Cartridge](bas.p8.png)
+![Cartridge](bin/bas.p8.png)
 
 ## Getting Started
 
-To run this game, you'll need to download the [cartridge](bas.p8.png) and have PICO-8 installed on your system. You can [download PICO-8 from the official website](https://www.lexaloffle.com/pico-8.php).
+To run this game, you'll need to download the [cartridge](bin/bas.p8.png) and have PICO-8 installed on your system. You can [download PICO-8 from the official website](https://www.lexaloffle.com/pico-8.php).
 
 Once you have PICO-8 installed, load the game by executing the following command in your PICO-8 command prompt:
 
