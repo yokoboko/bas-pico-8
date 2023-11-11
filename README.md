@@ -1,4 +1,4 @@
-# [WIP] Birds and Saws PICO-8 Demake
+# Birds and Saws PICO-8 Demake
 
 <img src='readme-resources/console_game_composition.gif' width='372'>
 
