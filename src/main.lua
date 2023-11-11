@@ -5,7 +5,7 @@ poke(0X5F5C, 255)
 cartdata("bas_data_1")
 
 function _init()
-    current_scene=game_scene:new()
+    current_scene=splash_scene:new()
 end
 
 function _update60()
