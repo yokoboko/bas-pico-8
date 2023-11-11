@@ -8,6 +8,10 @@ I hope you will enjoy this PICO-8 retro game demake! Feel free to contribute, sh
 
 ![Cartridge](bin/bas.p8.png)
 
+# Play Online
+
+Experience the game directly on the Pico-8 BBS forum. Dive into the action and play it now: [Pico-8 BBS Forum](https://www.lexaloffle.com/bbs/?tid=54986)
+
 ## Getting Started
 
 To run this game, you'll need to download the [cartridge](bin/bas.p8.png) and have PICO-8 installed on your system. You can [download PICO-8 from the official website](https://www.lexaloffle.com/pico-8.php).
