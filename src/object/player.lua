@@ -37,6 +37,7 @@ end
 function player:update(action_right,trap_y,will_die)
 	--jump
 	if action_right!=nil then
+		sfx(20)
 		if self.jumping then
 			self.tile_pos-=1
 		else

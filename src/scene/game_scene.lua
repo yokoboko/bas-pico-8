@@ -27,6 +27,9 @@ function game_scene:new(o)
     o.game_over=game_over:new()
     o.transition=transition:new()
     o.camera=game_camera:new({y=o.player.pos.y})
+
+    --music
+    music(0,600)
     return o
 end
 
@@ -55,13 +58,20 @@ function game_scene:update()
     --update state
     if action_right!=nil and self.columns:will_collide(self.player) then
         self.state=self.state_will_die
+        music(-1, 300)
+        sfx(21)
     end
     if self.state==self.state_initial and action_right!=nil then
         self.state=self.state_playing
         self.game_initial:hide()
+        music(2)
+        sfx(26)
     elseif self.state!=self.state_dead and (self.columns:collide(self.player) or self.trap:collide(self.player)) then
+        if (self.state!=self.state_will_die) sfx(21)
+        sfx(27)
         self.buttons_cooldown=22
         self.state=self.state_dead
+        music(-1, 300)
     end
 
     --update score

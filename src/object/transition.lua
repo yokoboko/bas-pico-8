@@ -59,12 +59,14 @@ function transition:draw()
 end
 
 function transition:start()
+    sfx(23)
     self.transition="start"
     self.y=self.offset
     self.anim_t=0
 end
 
 function transition:finish()
+    sfx(24)
     self.transition="finish"
     self.y=0
     self.anim_t=0

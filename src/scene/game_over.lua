@@ -51,6 +51,7 @@ function game_over:update(cam_y,player_pos,score)
                      self.explode_size,
                      self.explode_colors,
                      self.explode_amount)
+        sfx(25)
     end
 
     --update particles
