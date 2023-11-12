@@ -32,3 +32,6 @@ mv "$BIN_EXPORT_PATH/${PROJECT_NAME}_osx.zip" "${PROJECT_NAME}_osx.zip"
 mv "$BIN_EXPORT_PATH/${PROJECT_NAME}_linux.zip" "${PROJECT_NAME}_linux.zip"
 mv "$BIN_EXPORT_PATH/${PROJECT_NAME}_raspi.zip" "${PROJECT_NAME}_raspi.zip"
 rm -r "$BIN_EXPORT_PATH"
+
+# Cleanup
+rm -r ".zip"
