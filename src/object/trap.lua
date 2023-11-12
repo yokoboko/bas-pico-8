@@ -9,8 +9,8 @@ function trap:new(o)
 
     --init
     o.base_speed=0.042
-    o.speed=0.9
-    o.speed_boost=0.0042
+    o.speed=0.6
+    o.speed_boost=0.0005
     o.speed_max=2.42
     o.speed_multiply=15
     
