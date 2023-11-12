@@ -16,7 +16,7 @@ function player:new(o)
 	o.tile_offset_y=4 --in pixels
 	o.tile_pos=1362
 	o.jumping=false
-	o.jump_speed=0.05 -- in tiles
+	o.jump_speed=0.08 -- in tiles
 	o.jump_speed_will_die=0.0042 -- in tiles
 	o.jump_tile_pos=0 --in tiles
 	o.jump_changes_direction=false

@@ -8,15 +8,14 @@ function trap:new(o)
     self.__index=self
 
     --init
-    o.base_speed=0.042
-    o.speed=0.6
-    o.speed_boost=0.0005
-    o.speed_max=2.42
-    o.speed_multiply=15
-    
-    o.offset=128--116
+    o.speed_start=0.5
+    o.speed_top=1.7
+    o.speed_top_treshold=200 --game score points when we reach top speed
+    o.offset=128
+    o.offset_min=120
     o.tiles={122,123,124,125,123,124,125,123,124,125,123,126}
     o.tiles_fill={112,113,113,113,113,113,113,113,113,113,113,114}
+    o.speed_top=o.speed_top-o.speed_start --exclude start from top speed to ensure max is correct
 
     --collidable
     o.pos={x=16,y=32767}
@@ -27,11 +26,13 @@ function trap:new(o)
     return o
 end
 
-function trap:update(camera_y,is_dead)
+function trap:update(camera_y,score,is_dead)
     self:update_animation()
-    self.speed=min(self.speed+self.speed_boost,self.speed_max)
-    local shift=self.base_speed*self.speed*self.speed_multiply
+    local speed=min(score/self.speed_top_treshold,1) --0 to 1
+    local shift=self.speed_start+self.speed_top*speed
     self.pos.y=max(min(self.pos.y-shift, camera_y+self.offset),camera_y+72)
+    --animate in the trap when the game starts
+    self.offset=max(self.offset-0.2, self.offset_min)
 end
 
 function trap:draw()
