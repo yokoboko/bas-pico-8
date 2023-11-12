@@ -5,11 +5,7 @@ __lua__
 -- by yokoboko
 
 #include src/main.lua
-#include src/util/log.lua
 #include src/util/extend.lua
-#include src/util/ternary.lua
-#include src/util/easing.lua
-#include src/util/stats.lua
 #include src/scene/splash/splash_scene.lua
 #include src/scene/game/game_scene.lua
 #include src/scene/game/background.lua
@@ -27,6 +23,10 @@ __lua__
 #include src/object/controls_demo.lua
 #include src/object/score.lua
 #include src/object/highscore.lua
+#include src/util/ternary.lua
+#include src/util/easing.lua
+#include src/util/log.lua
+#include src/util/stats.lua
 
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
