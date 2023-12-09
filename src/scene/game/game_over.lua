@@ -97,7 +97,7 @@ function game_over:draw()
     end
 
     --circless
-    self.anim_t+=1
+    self.anim_t=min(self.anim_t+1,100)
     for c in all(self.circles) do
         local t=min(self.anim_t,c.d)
         local x=easing_cubic_out(t,self.player_x,c.x-self.player_x,c.d)
