@@ -21,9 +21,9 @@ rm -r "$EXPORT_PATH"/*
 $PICO8 bas.p8 -export "$EXPORT_PATH/$PROJECT_NAME.p8.png"
 
 # Export Web
-$PICO8 bas.p8 -export "$EXPORT_PATH/$PROJECT_NAME.html"
-cd $EXPORT_PATH && zip "$PROJECT_NAME_web.zip" "$PROJECT_NAME.html" "$PROJECT_NAME.js"
-rm -r "$PROJECT_NAME.js" "$PROJECT_NAME.html"
+$PICO8 bas.p8 -export "$EXPORT_PATH/${PROJECT_NAME}.html"
+cd $EXPORT_PATH && mv "${PROJECT_NAME}.html" "index.html" && zip "${PROJECT_NAME}_web.zip" "index.html" "$PROJECT_NAME.js"
+rm -r "$PROJECT_NAME.js" "index.html"
 
 # Build for Win, Mac, Linux and Raspberry Pi
 $PICO8 bas.p8 -export "$PROJECT_NAME.bin"
@@ -33,5 +33,5 @@ mv "$BIN_EXPORT_PATH/${PROJECT_NAME}_linux.zip" "${PROJECT_NAME}_linux.zip"
 mv "$BIN_EXPORT_PATH/${PROJECT_NAME}_raspi.zip" "${PROJECT_NAME}_raspi.zip"
 rm -r "$BIN_EXPORT_PATH"
 
-# Cleanup
-rm -r ".zip"
+cd $EXPORT_PATH && mv "${PROJECT_NAME}.html" "index.html" && zip "${PROJECT_NAME}_web.zip" "index.html" "$PROJECT_NAME.js"
+rm -r "$PROJECT_NAME.js" "index.html"
