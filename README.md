@@ -10,11 +10,19 @@ I hope you will enjoy this PICO-8 retro game demake! Feel free to contribute, sh
 
 ## Play Online
 
-Experience the game directly on the Pico-8 BBS forum. Dive into the action and play it now: [Pico-8 BBS Forum](https://www.lexaloffle.com/bbs/?tid=54986)
+- [Pico-8 BBS Forum](https://www.lexaloffle.com/bbs/?tid=54986)
+- [Newgrounds.com](https://www.newgrounds.com/portal/view/921566)
+- [itch.io](https://yokoboko.itch.io/bas)
 
 Featured on Pico-8 website:
 
 [<img alt="Play online" src="readme-resources/Screenshot 2023-12-14_at_18.32.02.png" />](https://www.lexaloffle.com/bbs/?tid=54986)
+
+Featured on Newgrounds:
+
+![Newgrounds](readme-resources/featured_newgrounds_Screenshot_2024-03-13_at_18.25.22.png)
+![Newgrounds](readme-resources/featured_newgrounds_Screenshot_2024-03-13_at_18.26.02.png)
+<img src='readme-resources/featured_newgrounds_Screenshot_2024-03-13_at_18.25.39.png' width='240'>
 
 ## Getting Started
 
