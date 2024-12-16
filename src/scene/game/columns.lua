@@ -43,6 +43,25 @@ function columns:update(tile_width,tile_height,cam_y,player,action_right,is_dead
 	end
 end
 
+function columns:shift(tile_height,cam_y)
+	--visible
+	local min_tile = flr(cam_y/tile_height)
+	local max_tile = ceil((cam_y+128)/tile_height)
+
+	local shift = 2600
+	for i=min_tile,max_tile do
+		local idx = i+shift
+		self.tiles["t"..idx]=self.tiles["t"..i]
+		self.tiles["t"..idx].idx = idx
+		self.tiles["t"..idx].saw.idx = idx
+		self.tiles["t"..idx].saw.pos.y=idx*tile_height
+		if self.tiles["t"..idx].jfx != nil then
+			self.tiles["t"..idx].jfx.y=idx*tile_height
+		end
+		self.tiles["t"..i] = nil
+	end
+end
+
 function columns:draw(tile_width,tile_height)
 	for k,v in pairs(self.tiles) do
 		if (v.saw != nil) v.saw:draw()

@@ -34,6 +34,14 @@ function game_scene:new(o)
 end
 
 function game_scene:update()
+    --temporary overflow fix
+    if self.player.tile_pos==-1300 and self.player.jump_tile_pos==0 then
+        self.columns:shift(self.tile_height,self.camera.y)
+        self.player.tile_pos=1300
+        self.camera.y += 2600*self.tile_height
+        self.trap.pos.y += 2600*self.tile_height
+    end
+
     --get button action
     local action_right=self:button_action_right()
     if self.buttons_cooldown>0 then
